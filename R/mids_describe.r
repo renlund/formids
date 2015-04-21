@@ -74,7 +74,7 @@ mids_describe <- function(object, x.names, file="", ..., force.factor=NULL, fact
         if(num){
             indx <- which(x %in% s)
         } else {
-            grep(s, x)
+            indx <- grep(s, x)
             ##indx <- grep(s, strsplit(x = x, split = ":"))
         }
         if(length(indx) == 1) return(indx)
@@ -82,7 +82,7 @@ mids_describe <- function(object, x.names, file="", ..., force.factor=NULL, fact
         if(length(indx) == 1) return(indx)
         stop("[mids_describe] cannot find variable location... (ish)")
     }
-    for(K in names(object$imp)){ # K = names(object$imp)[19]
+    for(K in names(object$imp)){ # K = names(object$imp)[6]   K = names(object$imp)[8]
         if(!K %in% x.names) next
         temp_var <- object$imp[[K]]
         if(is.null(temp_var)) next
@@ -105,7 +105,7 @@ mids_describe <- function(object, x.names, file="", ..., force.factor=NULL, fact
             indx <- place(s = K, num = FALSE)
             tmp <- as.character(as.matrix(object$imp[[K]]))
             if(is.factor(raw[[K]])) tmp <- factor(tmp, levels=levels(raw[[K]]))
-            tmp_tab <- table(tmp) / length(tmp)
+            tmp_tab <- round(table(tmp) / length(tmp), digits+2)
             Imputation[indx:(indx+length(tmp_tab)-1)] <- paste0(100*tmp_tab, "%")
         }
     }
