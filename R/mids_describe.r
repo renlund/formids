@@ -70,14 +70,20 @@ mids_describe <- function(object, x.names, file="", ..., force.factor=NULL, fact
     Imputation <- rep(NA_character_, length(bt_var))
     medShift_1 <- rep(NA_character_, length(bt_var))
     medShift_2 <- rep(NA_character_, length(bt_var))
-    place <- function(s, x = bt$tab){
-        indx <- which(x %in% s)
+    place <- function(s, x = bt$tab, num = TRUE){
+        if(num){
+            indx <- which(x %in% s)
+        } else {
+            grep(s, x)
+            ##indx <- grep(s, strsplit(x = x, split = ":"))
+        }
         if(length(indx) == 1) return(indx)
         indx <- which(substr(x, 1, length(s)) %in% s)
         if(length(indx) == 1) return(indx)
         stop("[mids_describe] cannot find variable location... (ish)")
     }
-    for(K in names(object$imp)){ # K = names(object$imp)[1]
+    for(K in names(object$imp)){ # K = names(object$imp)[19]
+        if(!K %in% x.names) next
         temp_var <- object$imp[[K]]
         if(is.null(temp_var)) next
         if(is.numeric(raw[[K]])){
@@ -93,9 +99,10 @@ mids_describe <- function(object, x.names, file="", ..., force.factor=NULL, fact
             med_miss <- median(MISS[[K]], na.rm=TRUE)
             medShift_1[indx] <- round((med_miss - med_coca) / iqr_coca, digits+1 )
             medShift_2[indx] <- round((median(tmp) - med_miss) / iqr_miss, digits+1 )
+            next
         }
         if(is.factor(raw[[K]]) | is.character(raw[[K]])){
-            indx <- place(K)
+            indx <- place(s = K, num = FALSE)
             tmp <- as.character(as.matrix(object$imp[[K]]))
             if(is.factor(raw[[K]])) tmp <- factor(tmp, levels=levels(raw[[K]]))
             tmp_tab <- table(tmp) / length(tmp)
