@@ -1,2 +1,0 @@
- * make 'mids_describe' depend on some Hmisc function instead of ucr.base.tab ?
-   (since so little of the ucr.base.tab force is actually used)
