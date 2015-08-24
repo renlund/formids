@@ -14,5 +14,6 @@ License: GPL-2
 VignetteBuilder: knitr
 Suggests:
     Hmisc,
+    ucR,
     knitr,
     testthat
