@@ -5,10 +5,14 @@ Version: 0.1.0.9001
 Date: 2015-04-01
 Author: Henrik Renlund
 Maintainer: Henrik Renlund <henrikrenlund@gmail.com>
-Description: Description, prediction, subsetting of mids (multiple imputation) object from the 'mice' package
+Description: Description, prediction, subsetting of mids (multiple imputation)
+    object from the 'mice' package.
 Depends:
-    R (>= 3.0.0)
+    R (>= 3.0.0),
+    mice (>= 2.22)
 License: GPL-2
 VignetteBuilder: knitr
 Suggests:
-    knitr
+    Hmisc,
+    knitr,
+    testthat
