@@ -1,6 +1,6 @@
 
 test_that("not really proper tests of mids functions", {
-   if(require(mice)){
+   if(requireNamespace("mice")){
       # test mids_subset
       df <- data.frame(
          x =c(1,1,3,NA),
@@ -38,7 +38,7 @@ test_that("not really proper tests of mids functions", {
       object <- mice(data = df, m=5) # char
       row.names(object$data)
       row.names(object$imp$x)
-      sob <- mids_subset_2(object, c(4,1,4,4))
+      expect_error(mids_subset_2(object, c(4,1,4,4)))
       row.names(sob$data)
       row.names(sob$imp$x)
 

@@ -12,7 +12,7 @@ mids_subset_2 <- function(object, index){
     naro <- row.names(object$data)
     if(length(unique(index)) == length(index)) return(mids_subset(object, index))
     if(!is.numeric(index)) stop("[mids_subset_2] need numeric index")
-    tryCatch(naro_int <- as.numeric(naro), warning = function(w) NULL)
+    tryCatch(naro_int <- as.numeric(naro), warning = function(w) stop("[formids::mids_subset_2] row names must be integers"))
     if(any(is.na(naro_int)) | any(naro_int != 1:n) ){
         warning("[mids_subset_2] row names should be the integers starting from 1. Will change this")
         for(K in names(object$imp)){
