@@ -6,7 +6,8 @@
 #' @param object a mids object
 #' @param formula formula for the logistic regression
 #' @param newdata data for which predictions are wanted
-#' @author Henrik Renlund
+#' @author Henrik
+#' @import mice
 #' @export
 
 mids_predict_logreg <- function(object, formula, newdata){
