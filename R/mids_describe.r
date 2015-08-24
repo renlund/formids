@@ -111,6 +111,6 @@ mids_describe <- function(object, x.names, file="", ..., force.factor=NULL, fact
     }
     bt$tab <- cbind(bt$tab, "$\\delta_1$" = medShift_1, "Imputed values" = Imputation, "$\\delta_2$" = medShift_2)
     bt$extra.col.heads <- c(bt$extra.col.heads, " ", paste0("$", object$m, " \\times$ missing/variable"), " ")
-    Hmisc::latex(bt, file = file, ...)
+    ucR::latex.ucr.base.tab(bt, file = file, ...)
 }
 
