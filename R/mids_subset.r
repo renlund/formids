@@ -16,7 +16,7 @@ mids_subset <- function(object, index){
         if(is.null(tmp)) next
         replacer <- tmp[rownames(tmp) %in% row.names(new_object$data),]
         if(nrow(replacer)==0){
-            new_object$imp[[K]] <- NULL
+            new_object$imp[K] <- list(NULL)
         } else {
             new_object$imp[[K]] <- replacer
         }
